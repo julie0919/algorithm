@@ -1,4 +1,18 @@
 def solution(n, lost, reserve):
+    reserve_num = set(reserve) - set(lost)
+    lost_num = set(lost) - set(reserve)
+
+    for i in reserve_num:
+        if i-1 in lost_num:
+            lost_num.remove(i-1)
+        elif i+1 in lost_num:
+            lost_num.remove(i+1)
+
+    return n - len(lost_num)
+
+
+'''
+def solution(n, lost, reserve):
     avail_student = n - len(lost)
     
     for lost_num in lost:
@@ -17,3 +31,4 @@ def solution(n, lost, reserve):
 
     answer = avail_student
     return answer
+    '''
